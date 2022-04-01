@@ -84,8 +84,18 @@ export const isValidGuess = (guess) => {
   return !!weekdaySolutions[flattenedGuess];
 }
 
+/* This is pretty sloppy I think, I've basically never done much with JS. The intent of this is to keep the random number constant throughout the 
+session and then on refresh it changes the stations. It's to eliminate the daily wait, which I sorta dislike. This is the sole edit I made.*/
+
+const randomNo = Math.random();
+
 export const todayGameIndex = () => {
-  return Math.floor(daysBetween(GAME_EPOCH, now));
+  // return Math.floor(daysBetween(GAME_EPOCH, now));
+  return new Date(Math.floor(randomNo * (now - GAME_EPOCH + 1) + GAME_EPOCH));
+}
+
+const todayGameIndexResult = () => {
+  return Math.random() * (todayGameIndex - GAME_EPOCH + 1) + GAME_EPOCH;
 }
 
 const treatAsUTC = (date) => {
@@ -108,6 +118,7 @@ const todaysRoutings = () => {
 }
 
 export const todaysTrip = () => {
+  // const index = todayGameIndex();
   const index = todayGameIndex();
   if (isWeekend) {
     return weekendAnswers[index % weekendAnswers.length];

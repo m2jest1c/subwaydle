@@ -12,7 +12,7 @@ const AboutModal = (props) => {
         <p>Guess the <strong>SUBWAYDLE</strong> in 6 tries.</p>
         <p>Each guess must a be a <strong>valid subway trip involving 3 trains</strong> using available transfers between them.</p>
         <p>You need to guess a specific set of three trains that can make the trip.</p>
-
+        <p><strong>This version of Subwaydle will reset the question on browser refresh.</strong></p>
         <Header as='h4'>Examples</Header>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
@@ -151,7 +151,9 @@ const AboutModal = (props) => {
           and <a href="https://www.nytransitmuseum.org/">New York Transit Museum</a> Trivia Nights.</p>
 
         <p>Created by <a href="https://www.sunny.ng" target="_blank">Sunny Ng</a><a href='https://twitter.com/_blahblahblah' target='_blank'><Icon name='twitter' link /></a></p>
-        <p><a href="https://github.com/blahblahblah-/subwaydle" target="_blank">Source code</a>.</p>
+        <p>Modified by <a href="https://github.com/m2jest1c" target="_blank">m2jest1c</a></p>
+        <p><a href="https://github.com/blahblahblah-/subwaydle" target="_blank">Original source code</a></p>
+	<p><a href="https://github.com/m2jest1c/subwaydle" target="_blank">Modified source code</a></p> 
         <p>Check out my other NYC Subway related projects: <a href="https://www.theweekendest.com" target="_blank">The Weekendest</a> and <a href="https://www.goodservice.io" target="_blank">goodservice.io</a>.</p>
       </Modal.Content>
     </Modal>
