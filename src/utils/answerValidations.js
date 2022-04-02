@@ -94,10 +94,6 @@ export const todayGameIndex = () => {
   return new Date(Math.floor(randomNo * (now - GAME_EPOCH + 1) + GAME_EPOCH));
 }
 
-const todayGameIndexResult = () => {
-  return Math.random() * (todayGameIndex - GAME_EPOCH + 1) + GAME_EPOCH;
-}
-
 const treatAsUTC = (date) => {
   const result = new Date(date);
   result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
