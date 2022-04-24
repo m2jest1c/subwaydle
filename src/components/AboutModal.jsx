@@ -14,6 +14,8 @@ const AboutModal = (props) => {
         <p>You need to guess a specific set of three trains that can make the trip.</p>
         <p><strong>This version of Subwaydle will reset the question on browser refresh.</strong></p>
         <Header as='h4'>Examples</Header>
+        
+        <p>The <TrainBullet id='A' size='small' /> train is in the correct spot of the trip.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -40,8 +42,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='A' size='small' /> train is in the correct spot of the trip.</p>
 
+        <p>Another train that shares the same routing as the <TrainBullet id='1' size='small' /> train is in that spot of the trip.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -68,8 +70,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>Another train that shares the same routing as the <TrainBullet id='1' size='small' /> train is in that spot of the trip.</p>
-
+        
+        <p>The <TrainBullet id='5' size='small' /> train is part of the trip, but in the wrong spot.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -96,8 +98,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='5' size='small' /> train is part of the trip, but in the wrong spot.</p>
-
+        
+        <p>The <TrainBullet id='4' size='small' /> train is not part of the trip in any spot.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -124,7 +126,6 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='4' size='small' /> train is not part of the trip in any spot.</p>
 
         <p><strong>Multiple routings may be possible</strong> to make the trip, but your goal is to
         find <strong>the one routing</strong> that matches the puzzle of the day. The solution <strong>may or may not</strong> be the fastest or efficient routing. It should also be noted that in the New York City Subway system, there are <strong>multiple stations with the same name</strong>.</p>
