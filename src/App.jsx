@@ -183,7 +183,7 @@ const App = () => {
   return (
     <Segment basic className='app-wrapper'>
       <Segment clearing basic className='header-wrapper'>
-        <Header floated='left'>{isWeekend && "Weekend "}Instant Subwaydle</Header>
+        <Header floated='left'>Instant Subwaydle</Header>
         <Icon className='float-right' name='cog' size='large' link onClick={handleSettingsOpen} />
         <Icon className='float-right' name='chart bar' size='large' link onClick={handleStatsOpen} />
         <Icon className='float-right' name='question circle outline' size='large' link onClick={handleAboutOpen} />
