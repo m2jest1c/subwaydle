@@ -1,12 +1,8 @@
 import weekdayAnswers from './../data/weekday/answers.json';
 import weekdaySolutions from './../data/weekday/solutions.json';
 import weekdayRoutings from './../data/weekday/routings.json';
-import weekendAnswers from './../data/weekend/answers.json';
-import weekendSolutions from './../data/weekend/solutions.json';
-import weekendRoutings from './../data/weekend/routings.json';
 import transfers from './../data/transfers.json';
 
-const ROUTES_WITH_NO_WEEKEND_SERVICE = ['B', 'W'];
 const GAME_EPOCH = new Date('January 29, 2022 00:00:00').valueOf();
 
 const today = new Date();
@@ -68,20 +64,12 @@ const retrieveSubrouting = (train, routings, begin, end) => {
   return routings[trainLookup].slice(endIndex, beginIndex + 1);
 }
 
-export const isWeekend = [0, 6].includes(today.getDay());
-
 export const routesWithNoService = () => {
-  if (isWeekend) {
-    return ROUTES_WITH_NO_WEEKEND_SERVICE;
-  }
   return [];
 }
 
 export const isValidGuess = (guess) => {
   const flattenedGuess = guess.join('-');
-  if (isWeekend) {
-    return !!weekendSolutions[flattenedGuess];
-  }
   return !!weekdaySolutions[flattenedGuess];
 }
 
@@ -108,18 +96,12 @@ const daysBetween = (startDate, endDate) => {
 
 
 const todaysRoutings = () => {
-  if (isWeekend) {
-    return weekendRoutings;
-  }
   return weekdayRoutings;
 }
 
 export const todaysTrip = () => {
   // const index = todayGameIndex();
   const index = todayGameIndex();
-  if (isWeekend) {
-    return weekendAnswers[index % weekendAnswers.length];
-  }
   return weekdayAnswers[index % weekdayAnswers.length];
 }
 
@@ -128,9 +110,6 @@ export const flattenedTodaysTrip = () => {
 }
 
 export const todaysSolution = () => {
-  if (isWeekend) {
-    return weekendSolutions[todaysTrip().join("-")];
-  }
   return weekdaySolutions[todaysTrip().join("-")];
 }
 

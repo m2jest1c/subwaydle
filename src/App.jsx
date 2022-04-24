@@ -9,7 +9,6 @@ import StatsModal from './components/StatsModal';
 import SettingsModal from './components/SettingsModal';
 
 import {
-  isWeekend,
   routesWithNoService,
   isValidGuess,
   isWinningGuess,
