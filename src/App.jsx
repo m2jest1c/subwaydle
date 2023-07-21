@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Header, Segment, Icon, Message } from 'semantic-ui-react';
+import { Header, Segment, Icon, Message, Popup } from 'semantic-ui-react';
 
 import GameGrid from './components/GameGrid';
 import Keyboard from './components/Keyboard';
@@ -9,12 +9,19 @@ import StatsModal from './components/StatsModal';
 import SettingsModal from './components/SettingsModal';
 
 import {
+<<<<<<< HEAD
+=======
+  isNight,
+  isWeekend,
+>>>>>>> main
   routesWithNoService,
   isValidGuess,
   isWinningGuess,
   updateGuessStatuses,
   flattenedTodaysTrip,
   todaysSolution,
+  todayGameIndex,
+  NIGHT_GAMES,
 } from './utils/answerValidations';
 
 import {
@@ -24,6 +31,8 @@ import {
 } from './utils/localStorage';
 
 import { addStatsForCompletedGame, loadStats } from './utils/stats';
+
+import { loadSettings } from './utils/settings';
 
 import stations from './data/stations.json';
 
@@ -68,6 +77,7 @@ const App = () => {
     return loaded.guesses;
   });
   const [stats, setStats] = useState(() => loadStats());
+  const [settings, setSettings] = useState(() => loadSettings());
 
   const solution = todaysSolution();
 
@@ -179,7 +189,10 @@ const App = () => {
     setIsAboutOpen(true);
   }
 
+  const isDarkMode = (NIGHT_GAMES.includes(todayGameIndex())) || (todayGameIndex() > Math.max(...NIGHT_GAMES) && settings.display.darkMode);
+
   return (
+<<<<<<< HEAD
     <Segment basic className='app-wrapper'>
       <Segment clearing basic className='header-wrapper'>
         <Header floated='left'>Instant Subwaydle</Header>
@@ -219,12 +232,74 @@ const App = () => {
           presentRoutes={presentRoutes}
           absentRoutes={absentRoutes}
         />
+=======
+    <div className={"outer-app-wrapper " + (isDarkMode ? 'dark' : '')}>
+      <Segment basic className='app-wrapper' inverted={isDarkMode}>
+        <Segment clearing basic className='header-wrapper' inverted={isDarkMode}>
+          <Header floated='left'>
+            {isNight && "Late Night "}
+            {(!isNight && isWeekend) && "Weekend "}Subwaydle
+            {
+               isNight &&
+               <Popup
+               position='bottom center'
+                 trigger={
+                   <sup>[?]</sup>
+                 }
+               >
+               <Popup.Content>
+                 <p>Subwaydle now available in Dark Mode!</p>
+                 <p>Try solving this weekend's Subwaydle with late night routing patterns.</p>
+               </Popup.Content>
+               </Popup>
+             }
+          </Header>
+          <Icon className='float-right' inverted={isDarkMode} name='cog' size='large' link onClick={handleSettingsOpen} />
+          <Icon className='float-right' inverted={isDarkMode} name='chart bar' size='large' link onClick={handleStatsOpen} />
+          <Icon className='float-right' inverted={isDarkMode} name='question circle outline' size='large' link onClick={handleAboutOpen} />
+        </Segment>
+        <Header as='h5' textAlign='center' className='hint'>Travel from {stations[solution.origin].name} to {stations[solution.destination].name} using 2 transfers.</Header>
+        <Segment basic className='game-grid-wrapper'>
+          {
+            isNotEnoughRoutes &&
+            <Message negative floating attached='top'>
+              <Message.Header>Not enough trains for the trip</Message.Header>
+            </Message>
+          }
+          {
+            isGuessInvalid &&
+            <Message negative>
+              <Message.Header>Not a valid trip</Message.Header>
+            </Message>
+          }
+          <GameGrid
+            isDarkMode={isDarkMode}
+            currentGuess={currentGuess}
+            guesses={guesses}
+            attempts={ATTEMPTS}
+            inPlay={!isGameWon && !isGameLost && guesses.length < 6}
+          />
+        </Segment>
+        <Segment basic>
+          <Keyboard
+            noService={routesWithNoService()}
+            isDarkMode={isDarkMode}
+            onChar={onChar}
+            onDelete={onDelete}
+            onEnter={onEnter}
+            correctRoutes={correctRoutes}
+            similarRoutes={similarRoutes}
+            presentRoutes={presentRoutes}
+            absentRoutes={absentRoutes}
+          />
+        </Segment>
+        <AboutModal open={isAboutOpen} isDarkMode={isDarkMode} handleClose={onAboutClose} />
+        <SolutionModal open={isSolutionsOpen} isDarkMode={isDarkMode} isGameWon={isGameWon}  handleModalClose={onSolutionsClose} stats={stats} guesses={guesses} />
+        <StatsModal open={isStatsOpen} isDarkMode={isDarkMode} stats={stats} handleClose={onStatsClose} />
+        <SettingsModal open={isSettingsOpen} isDarkMode={isDarkMode} handleClose={onSettingsClose} onSettingsChange={setSettings} />
+>>>>>>> main
       </Segment>
-      <AboutModal open={isAboutOpen} handleClose={onAboutClose} />
-      <SolutionModal isGameWon={isGameWon} open={isSolutionsOpen} handleModalClose={onSolutionsClose} stats={stats} guesses={guesses} />
-      <StatsModal open={isStatsOpen} stats={stats} handleClose={onStatsClose} />
-      <SettingsModal open={isSettingsOpen} handleClose={onSettingsClose} />
-    </Segment>
+    </div>
   );
 }
 

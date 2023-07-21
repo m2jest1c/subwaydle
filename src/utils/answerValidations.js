@@ -1,9 +1,24 @@
 import weekdayAnswers from './../data/weekday/answers.json';
 import weekdaySolutions from './../data/weekday/solutions.json';
 import weekdayRoutings from './../data/weekday/routings.json';
+<<<<<<< HEAD
 import transfers from './../data/transfers.json';
 
+=======
+import weekendAnswers from './../data/weekend/answers.json';
+import weekendSolutions from './../data/weekend/solutions.json';
+import weekendRoutings from './../data/weekend/routings.json';
+import nightAnswers from './../data/night/answers.json';
+import nightSolutions from './../data/night/solutions.json';
+import nightRoutings from './../data/night/routings.json';
+import transfers from './../data/transfers.json';
+
+const ROUTES_WITH_NO_WEEKEND_SERVICE = ['B', 'W'];
+const ROUTES_WITH_NO_NIGHT_SERVICE = ['B', 'C', 'W', 'GS'];
+>>>>>>> main
 const GAME_EPOCH = new Date('January 29, 2022 00:00:00').valueOf();
+export const NIGHT_GAMES = [350, 351];
+const DEKALB_AV_FLATBUSH_STOP = "R30";
 
 const today = new Date();
 const now = Date.now();
@@ -36,7 +51,19 @@ const isSimilarToAnswerTrain = (guess, index) => {
 
   const answerSubrouting = retrieveSubrouting(answer, routings, begin, end);
 
-  return guessSubrouting.some(s => answerSubrouting.some(t => t === s)) || answerSubrouting.some(s => guessSubrouting.some(t => t === s));
+  if (guessSubrouting.includes(begin) && guessSubrouting.includes(end) && answerSubrouting.includes(begin) && answerSubrouting.includes(end)) {
+    return true;
+  }
+
+  const guessSubroutingInner = guessSubrouting.slice(1, guessSubrouting.length).filter(s => s !== DEKALB_AV_FLATBUSH_STOP);
+  const answerSubroutingInner = answerSubrouting.slice(1, answerSubrouting.length).filter(s => s !== DEKALB_AV_FLATBUSH_STOP);
+
+
+  if (guessSubroutingInner.every(s => answerSubroutingInner.includes(s)) || answerSubroutingInner.every(s => guessSubroutingInner.includes(s))) {
+    return (guessSubrouting.includes(begin) && answerSubrouting.includes(begin)) || (guessSubrouting.includes(end) && answerSubrouting.includes(end));
+  }
+
+  return false;
 }
 
 const retrieveSubrouting = (train, routings, begin, end) => {
@@ -51,10 +78,10 @@ const retrieveSubrouting = (train, routings, begin, end) => {
     trainLookup = train;
   }
 
-  const beginIndex = [begin, transfers[begin]].flat().filter(n => n).map(s => routings[trainLookup].indexOf(s)).find(i => i > -1) || -1;
-  const endIndex = [end, transfers[end]].flat().filter(n => n).map(s => routings[trainLookup].indexOf(s)).find(i => i > -1) || -1;
+  const beginIndex = [begin, transfers[begin]].flat().filter(n => n).map(s => routings[trainLookup].indexOf(s)).find(i => i > -1);
+  const endIndex = [end, transfers[end]].flat().filter(n => n).map(s => routings[trainLookup].indexOf(s)).find(i => i > -1);
 
-  if (beginIndex === -1 || endIndex === -1) {
+  if (beginIndex == null || endIndex == null) {
     return;
   }
 
@@ -65,11 +92,29 @@ const retrieveSubrouting = (train, routings, begin, end) => {
 }
 
 export const routesWithNoService = () => {
+<<<<<<< HEAD
+=======
+  if (isNight) {
+    return ROUTES_WITH_NO_NIGHT_SERVICE;
+  }
+  if (isWeekend) {
+    return ROUTES_WITH_NO_WEEKEND_SERVICE;
+  }
+>>>>>>> main
   return [];
 }
 
 export const isValidGuess = (guess) => {
   const flattenedGuess = guess.join('-');
+<<<<<<< HEAD
+=======
+  if (isNight) {
+    return !!nightSolutions[flattenedGuess];
+  }
+  if (isWeekend) {
+    return !!weekendSolutions[flattenedGuess];
+  }
+>>>>>>> main
   return !!weekdaySolutions[flattenedGuess];
 }
 
@@ -94,14 +139,33 @@ const daysBetween = (startDate, endDate) => {
   return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
 }
 
+export const isNight = NIGHT_GAMES.includes(todayGameIndex());
 
 const todaysRoutings = () => {
+<<<<<<< HEAD
+=======
+  if (isNight) {
+    return nightRoutings;
+  }
+  if (isWeekend) {
+    return weekendRoutings;
+  }
+>>>>>>> main
   return weekdayRoutings;
 }
 
 export const todaysTrip = () => {
   // const index = todayGameIndex();
   const index = todayGameIndex();
+<<<<<<< HEAD
+=======
+  if (isNight) {
+    return nightAnswers[index % nightAnswers.length];
+  }
+  if (isWeekend) {
+    return weekendAnswers[index % weekendAnswers.length];
+  }
+>>>>>>> main
   return weekdayAnswers[index % weekdayAnswers.length];
 }
 
@@ -110,6 +174,15 @@ export const flattenedTodaysTrip = () => {
 }
 
 export const todaysSolution = () => {
+<<<<<<< HEAD
+=======
+  if (isNight) {
+    return weekendSolutions[todaysTrip().join("-")];
+  }
+  if (isWeekend) {
+    return weekendSolutions[todaysTrip().join("-")];
+  }
+>>>>>>> main
   return weekdaySolutions[todaysTrip().join("-")];
 }
 
