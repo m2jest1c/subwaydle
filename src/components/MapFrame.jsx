@@ -92,7 +92,7 @@ const MapFrame = (props) => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/theweekendest/ck1fhati848311cp6ezdzj5cm?optimize=true',
+      style: 'mapbox://styles/m2jest1cc/cl1ehpjdf001v14mt5obka2mj?optimize=true',
       center: [lng, lat],
       bearing: MANHATTAN_TILT,
       minZoom: 9,

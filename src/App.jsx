@@ -9,7 +9,6 @@ import StatsModal from './components/StatsModal';
 import SettingsModal from './components/SettingsModal';
 
 import {
-  isWeekend,
   routesWithNoService,
   isValidGuess,
   isWinningGuess,
@@ -183,7 +182,7 @@ const App = () => {
   return (
     <Segment basic className='app-wrapper'>
       <Segment clearing basic className='header-wrapper'>
-        <Header floated='left'>{isWeekend && "Weekend "}Subwaydle</Header>
+        <Header floated='left'>Instant Subwaydle</Header>
         <Icon className='float-right' name='cog' size='large' link onClick={handleSettingsOpen} />
         <Icon className='float-right' name='chart bar' size='large' link onClick={handleStatsOpen} />
         <Icon className='float-right' name='question circle outline' size='large' link onClick={handleAboutOpen} />

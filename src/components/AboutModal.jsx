@@ -12,8 +12,10 @@ const AboutModal = (props) => {
         <p>Guess the <strong>SUBWAYDLE</strong> in 6 tries.</p>
         <p>Each guess must a be a <strong>valid subway trip involving 3 trains</strong> using available transfers between them.</p>
         <p>You need to guess a specific set of three trains that can make the trip.</p>
-
+        <p><strong>This version of Subwaydle will reset the question on browser refresh.</strong></p>
         <Header as='h4'>Examples</Header>
+        
+        <p>The <TrainBullet id='A' size='small' /> train is in the correct spot of the trip.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -40,8 +42,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='A' size='small' /> train is in the correct spot of the trip.</p>
 
+        <p>Another train that shares the same routing as the <TrainBullet id='1' size='small' /> train is in that spot of the trip.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -68,8 +70,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>Another train that shares the same routing as the <TrainBullet id='1' size='small' /> train is in that spot of the trip.</p>
-
+        
+        <p>The <TrainBullet id='5' size='small' /> train is part of the trip, but in the wrong spot.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -96,8 +98,8 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='5' size='small' /> train is part of the trip, but in the wrong spot.</p>
-
+        
+        <p>The <TrainBullet id='4' size='small' /> train is not part of the trip in any spot.</p>
         <Segment basic>
           <Grid centered columns={4} className='game-grid'>
             <Grid.Row>
@@ -124,7 +126,6 @@ const AboutModal = (props) => {
             </Grid.Row>
           </Grid>
         </Segment>
-        <p>The <TrainBullet id='4' size='small' /> train is not part of the trip in any spot.</p>
 
         <p><strong>Multiple routings may be possible</strong> to make the trip, but your goal is to
         find <strong>the one routing</strong> that matches the puzzle of the day. The solution <strong>may or may not</strong> be the fastest or efficient routing. It should also be noted that in the New York City Subway system, there are <strong>multiple stations with the same name</strong>.</p>
@@ -135,7 +136,6 @@ const AboutModal = (props) => {
           It is assumed that all stations allow transfer in all directions, even when they're not physically possible in real life (limitation due to this data is not being publicly available).</p>
         <p>Routing for each train line is based on <strong>midday schedule</strong> (i.e. no peak-direction express, no peak-only branches, no 
           Z, B terminates at 145 St). <strong>Weekend puzzles are based on regularly-scheduled weekend routings.</strong></p>
-        <p>Follow <a href='https://twitter.com/subwaydle' target='_blank'>@subwaydle<Icon name='twitter' link /></a> for the previous day's solution and stats, updated daily.</p>
 
         <Header as='h4'>Tips</Header>
         <p>Input using keyboard is supported.</p>
@@ -151,7 +151,9 @@ const AboutModal = (props) => {
           and <a href="https://www.nytransitmuseum.org/">New York Transit Museum</a> Trivia Nights.</p>
 
         <p>Created by <a href="https://www.sunny.ng" target="_blank">Sunny Ng</a><a href='https://twitter.com/_blahblahblah' target='_blank'><Icon name='twitter' link /></a></p>
-        <p><a href="https://github.com/blahblahblah-/subwaydle" target="_blank">Source code</a>.</p>
+        <p>Modified by <a href="https://github.com/m2jest1c" target="_blank">m2jest1c</a></p>
+        <p><a href="https://github.com/blahblahblah-/subwaydle" target="_blank">Original source code</a></p>
+	<p><a href="https://github.com/m2jest1c/subwaydle" target="_blank">Modified source code</a></p> 
         <p>Check out my other NYC Subway related projects: <a href="https://www.theweekendest.com" target="_blank">The Weekendest</a> and <a href="https://www.goodservice.io" target="_blank">goodservice.io</a>.</p>
       </Modal.Content>
     </Modal>
